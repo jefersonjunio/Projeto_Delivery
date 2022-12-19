@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9f667db0-79df-4921-8077-4e7d49b07da2">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Delivery.jrdax"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="idPedido" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select 
+PRO.itemPedido as Item, quantidade as Qnt, preco as Preço, precoTotal as PreçoTotal,  
+CLI.nomeCliente as Nome, cpfCliente as CPF, ruaEndCliente as Rua, bairroEndCliente as Bairro, numeroEndCliente as Numero, celularCliente as Celular,
+PED.dataEHorarioDoPedido as Data
+from produtospedidos as PRO 
+inner join cliente as CLI on (CLI.idCliente = PRO.Pedido_Cliente_idCliente)
+inner join pedido as PED on (CLI.idCliente = PED.Cliente_idCliente)
+where PRO.Pedido_idPedidos = $P{idPedido} and PED.idPedidos = $P{idPedido}]]>
+	</queryString>
+	<field name="Item" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="itemPedido"/>
+		<property name="com.jaspersoft.studio.field.label" value="Item"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtospedidos"/>
+	</field>
+	<field name="Qnt" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="quantidade"/>
+		<property name="com.jaspersoft.studio.field.label" value="Qnt"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtospedidos"/>
+	</field>
+	<field name="Preço" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="preco"/>
+		<property name="com.jaspersoft.studio.field.label" value="Preço"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtospedidos"/>
+	</field>
+	<field name="PreçoTotal" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="precoTotal"/>
+		<property name="com.jaspersoft.studio.field.label" value="PreçoTotal"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtospedidos"/>
+	</field>
+	<field name="Nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nomeCliente"/>
+		<property name="com.jaspersoft.studio.field.label" value="Nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="CPF" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cpfCliente"/>
+		<property name="com.jaspersoft.studio.field.label" value="CPF"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="Rua" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ruaEndCliente"/>
+		<property name="com.jaspersoft.studio.field.label" value="Rua"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="Bairro" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="bairroEndCliente"/>
+		<property name="com.jaspersoft.studio.field.label" value="Bairro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="Numero" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="numeroEndCliente"/>
+		<property name="com.jaspersoft.studio.field.label" value="Numero"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="Celular" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="celularCliente"/>
+		<property name="com.jaspersoft.studio.field.label" value="Celular"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="Data" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="dataEHorarioDoPedido"/>
+		<property name="com.jaspersoft.studio.field.label" value="Data"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pedido"/>
+	</field>
+	<variable name="SOMA" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Preço}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{Preço}]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="220" y="20" width="100" height="30" uuid="1bacf23d-89bb-487f-8c09-0373b480c0c9"/>
+				<textElement>
+					<font fontName="Serif" size="22"/>
+				</textElement>
+				<text><![CDATA[Pedido]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="5" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="123" splitType="Stretch">
+			<textField>
+				<reportElement x="90" y="0" width="140" height="30" uuid="ec706fb1-cdf3-4b65-89ee-c1c6c8e0f5ea"/>
+				<textFieldExpression><![CDATA[$F{Nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="0" width="100" height="30" uuid="a4b67473-43fc-4712-bd4f-4ffa9b544c07"/>
+				<textFieldExpression><![CDATA[$F{CPF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="40" width="150" height="30" uuid="841a824e-ac8b-4f76-9019-1ddc2c78075c"/>
+				<textFieldExpression><![CDATA[$F{Rua}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="40" width="100" height="30" uuid="c2f7b729-c691-4236-813c-677de41faa43"/>
+				<textFieldExpression><![CDATA[$F{Bairro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="40" width="70" height="30" uuid="a4eea549-7ab2-482a-ac08-b1b5f4ff84df"/>
+				<textFieldExpression><![CDATA[$F{Numero}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="90" height="30" uuid="9e259433-06a7-4e55-96d0-3dc88ed318dd"/>
+				<textElement markup="html">
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome do cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="0" width="30" height="30" uuid="94747299-e6b3-4e31-bbd7-29fb7d993447"/>
+				<textElement>
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="60" height="30" uuid="2383acd6-9455-4435-bf62-263c956acee6"/>
+				<textElement>
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Endereço:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="40" width="30" height="30" uuid="a9bb6942-9f2b-4acf-8d5a-9bfc4fa68d5e"/>
+				<textElement>
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rua]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="40" width="40" height="30" uuid="305833c2-6662-4727-b29e-81b316faff4d"/>
+				<textElement>
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bairro:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="40" width="50" height="30" uuid="a4e3716c-6e58-48fd-a31b-e4ea9c488ef3"/>
+				<textElement>
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="0" width="100" height="30" uuid="e1920be6-cd8d-4dd7-9066-3e0c6df7c669"/>
+				<textFieldExpression><![CDATA[$F{Celular}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="381" y="0" width="39" height="30" uuid="e9577473-f050-42f7-9d3b-1bce0fa16952"/>
+				<textElement>
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Celular:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="90" width="100" height="30" uuid="402a7d59-5696-4de5-87c9-10a8dbfd4b15">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0cecd9fb-0e8e-4509-96c2-27bce58f1543"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Item pedido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="90" width="100" height="30" uuid="66ac4004-062c-4690-86e2-035f299e6d49">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0ed6eb0b-0b5d-4c1a-8191-6850bf0d65fb"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qnt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="90" width="100" height="30" uuid="0f192adb-8506-45be-a0f2-67dc60d4bbed">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="78f41c57-7153-46ad-a8b8-ecd741effb06"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Preço]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="30" uuid="fedab4e7-57dd-4a9e-a2c9-d2167bc5e1fa">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0cecd9fb-0e8e-4509-96c2-27bce58f1543"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Item}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="30" uuid="a378b154-a75b-4a7d-9323-c28daf8f9cf5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0ed6eb0b-0b5d-4c1a-8191-6850bf0d65fb"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Qnt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="30" uuid="624c5d77-d974-498d-a56f-c45873e9f41b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="78f41c57-7153-46ad-a8b8-ecd741effb06"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Preço}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="30" uuid="244fbac2-dfa2-483b-a639-9a58c69b8a03"/>
+				<textElement>
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="50" y="0" width="100" height="30" uuid="2af65482-7652-4975-980c-47bdfcf004d1"/>
+				<textFieldExpression><![CDATA[$V{SOMA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
